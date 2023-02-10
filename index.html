@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Inicio</title>
+    <!-- Link a family font 'Inter'  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <!-- Link a hojas de estilo -->
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Desarrollado por Agustín Valenzuela -->
+    
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="imagenes/Logo.svg" alt="Logo de Alura">
+        </div>
+    </header>
+    <main>
+            <div class="mensaje_advertencia">
+                <input type="text" class="mensaje" cols="70" rows="10" placeholder="Ingrese el texto aquí">
+                <h4 class="advertencia">&#9888Solo letras minúsculas y sin acento</h4>
+            </div>
+
+            <div class="botones">
+                <button class="btn_encriptar">Encriptar</button>
+                <button class="btn_desencriptar">Desencriptar</button>
+            </div>       
+        <ul>
+            <div id="imagen_encontrado">
+                <li class="rectangulo 1"></li>
+                <textarea id = "texto_devuelto">Texto</textarea>
+                <button id = "btn_copiar" onclick = "copiar()">Copiar</button>
+            </div>
+            <div id="imagen_no_encontrado">
+                <li class="rectangulo2"></li>
+                <img class="muneco" src="imagenes/Muñeco.svg" alt="Muñeco sentado">
+                <div class="mensaje_no_encontrado">
+                    <h2>Ningún mensaje fue encontrado</h2>
+                    <h3>Ingresa el texto que deseas encriptar o desencriptar</h3>
+                </div>
+            </div>
+        </ul>
+        <script>
+            let encriptar = document.querySelector(".btn_encriptar");
+            let desencriptar = document.querySelector(".btn_desencriptar");
+            let input = document.querySelector("input");
+
+            function validar() {
+                let texto = input.value;
+                let validador = texto.match(/^[a-z]*$/);
+
+                if(!validador || validador === 0) {
+                    alert("Solo son permitidas letras minúsculas y sin acentos")
+                    location.reload();
+                    return true;
+                }
+            }
+
+            function ocultar() {
+                document.getElementById("imagen_no_encontrado").style.display = "none";
+            }
+            
+            function mostrar() {
+                document.getElementById("imagen_no_encontrado").style.display = "";
+            }
+            
+            function encriptarTexto() {
+                let texto = input.value;
+
+                if(!validar()){
+
+                    if(texto != "") {
+                        let textoArreglo = texto.split('');
+                    
+                        //Cambio de vocales por texto de encriptación
+                        for(posicion = 0; posicion < textoArreglo.length; posicion++){
+                            if(textoArreglo[posicion]=="a"){
+                                textoArreglo[posicion] = "ai";
+                            } else if(textoArreglo[posicion]=="e"){
+                                textoArreglo[posicion] = "enter";
+                            } else if(textoArreglo[posicion]=="i"){
+                                textoArreglo[posicion] = "imes";
+                            } else if(textoArreglo[posicion]=="o"){
+                                textoArreglo[posicion] = "ober";
+                            } else if(textoArreglo[posicion]=="u"){
+                                textoArreglo[posicion] = "ufat";
+                            }
+                        }
+
+                        //Unión de letras del arreglo en un solo string
+                        let textoEncriptado = "";
+                        for(posicion = 0; posicion < textoArreglo.length; posicion++){
+                            textoEncriptado = textoEncriptado + textoArreglo[posicion];
+                        }
+
+                        //Oculta la pantalla de mensaje no encontrado
+                        ocultar();
+                        
+                        //Muestra el texto encriptado por pantalla
+                        document.getElementById("texto_devuelto").innerHTML = textoEncriptado;
+
+                    } else{
+                        mostrar();
+                    }
+                }
+            }
+            
+            function desencriptarTexto() {
+                let texto = input.value;
+
+                if(!validar()){
+
+                    if(texto != ""){
+                        let arregloTextoEncriptado = texto.split('');
+
+                        //Reconocimiento y cambio de letras en el texto encriptado
+                        for(posicion = 0; posicion < arregloTextoEncriptado.length; posicion++){
+                            if(arregloTextoEncriptado[posicion] == "a" && arregloTextoEncriptado[posicion+1] == "i"){
+                                arregloTextoEncriptado.splice(posicion + 1, 1);
+                            } else if(arregloTextoEncriptado[posicion] + arregloTextoEncriptado[posicion + 1] + arregloTextoEncriptado[posicion + 2] + arregloTextoEncriptado[posicion + 3] + arregloTextoEncriptado[posicion + 4] == "enter") {
+                                arregloTextoEncriptado.splice(posicion + 1, 4);
+                            } else if(arregloTextoEncriptado[posicion] + arregloTextoEncriptado[posicion + 1] + arregloTextoEncriptado[posicion + 2] + arregloTextoEncriptado[posicion + 3] == "imes") {
+                                arregloTextoEncriptado.splice(posicion + 1, 3);
+                            } else if(arregloTextoEncriptado[posicion] + arregloTextoEncriptado[posicion + 1] + arregloTextoEncriptado[posicion + 2] + arregloTextoEncriptado[posicion + 3] == "ober") {
+                                arregloTextoEncriptado.splice(posicion + 1, 3);
+                            } else if(arregloTextoEncriptado[posicion] + arregloTextoEncriptado[posicion + 1] + arregloTextoEncriptado[posicion + 2] + arregloTextoEncriptado[posicion + 3] == "ufat") {
+                                arregloTextoEncriptado.splice(posicion + 1, 3);
+                            }
+                        }
+
+                        //Unión de letras del arreglo en un solo string
+                        let textoDesencriptado = "";
+                        for(posicion = 0; posicion < arregloTextoEncriptado.length; posicion++){
+                            textoDesencriptado = textoDesencriptado + arregloTextoEncriptado[posicion];
+                        }
+
+                        //Oculta la pantalla de mensaje no encontrado
+                        ocultar();
+
+                        //Muestra el texto desencriptado por pantalla
+                        document.getElementById("texto_devuelto").innerHTML = textoDesencriptado;
+                    } else{
+                    mostrar();
+                    }
+                }
+            }
+
+            //Función de copiar en portapapeles
+            function copiar() {
+                let contenido = document.getElementById('texto_devuelto').innerHTML;
+                
+                navigator.clipboard.writeText(contenido)
+                    .then(() => {
+                        alert("Texto copiado en el portapapeles");
+                    })
+                    .catch(err => {
+                        console.log("Algo ocurrió y no se pudo copiar el texto", err);
+                    })
+            }
+
+            encriptar.onclick = encriptarTexto;
+            desencriptar.onclick = desencriptarTexto;
+            
+        </script>
+    </main>
+    <footer>
+        <p class="copyright">&copy Copyright Agustín Valezuela Peña - 2023</p>
+    </footer>
+</body>
+</html>
