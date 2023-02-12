@@ -42,7 +42,6 @@ body{
     padding-top: 2%;
 }
 
-
 .rectangulo1{
     position: absolute;
     width: 23%;
@@ -82,7 +81,6 @@ body{
     border-radius: 32px;
 }
 
-
 #texto_devuelto{
     position: absolute;
     width: 80%;
@@ -117,6 +115,7 @@ body{
     left: 75%;
     top: 70%;
 }
+
 .mensaje_no_encontrado h3{
     padding-top: 2%;
 }
@@ -175,7 +174,6 @@ body{
 }
 
 footer{
-    background: url(imagenes/bg.jpg);
     text-align: center;
     padding: 2%;
 
@@ -188,3 +186,141 @@ footer{
     color: #0A3871;
     font-size: 12px;
 }
+
+/*Si encuentras una pantalla con hasta 480px de ancho máximo, aplica las instrucciones que se definen*/
+@media screen and (max-width: 480px){
+
+    .mensaje_advertencia{
+        width: auto;
+    }
+
+    .mensaje{
+        width: 70%;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 16px;
+        font-size: 16px;
+        line-height: 150%;
+
+        color: #0A3871;
+    }
+
+    .advertencia{
+        width: auto;
+        font-size: 10px;
+        padding-top: 2%;
+    }
+
+    .rectangulo1{
+        position: absolute;
+        width: 60%;
+        height: 30%;
+        left: 20%;
+        top: 40%;
+    
+        background: #FFFFFF;
+    
+        box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+        border-radius: 24px;
+    }
+
+    .rectangulo2{
+        position: absolute;
+        width: 60%;
+        height: 30%;
+        left: 20%;
+        top: 40%;
+    
+        background: #FFFFFF;
+    
+        box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+        border-radius: 24px;
+    }
+
+    .muneco{
+        position: absolute;
+        width: 30%;
+        height: 30%;
+        left: 35%;
+        top: 33%; 
+    }
+
+    
+
+    .mensaje_no_encontrado{
+        padding: 0%;
+        gap: 1%;
+    
+        position: absolute;
+        width: 50%;
+        height: 30%;
+        left: 27%;
+        top: 60%; 
+    }
+
+    .mensaje_no_encontrado h3, .mensaje_no_encontrado h2{
+        padding-top: 2%;
+        font-size: 10px;
+    }
+
+    .botones{
+        position: absolute;
+        width: 60%;
+        height: 10%;
+        left: 20%;
+        top: 80%; 
+    }
+
+    .btn_encriptar{
+        padding: 3%;
+    
+        width: 40%;
+        margin-right: auto;
+        margin-left: auto;
+    
+        background: #0A3871;
+        border-radius: 12px;
+        color: #FFFFFF
+    }
+
+    .btn_desencriptar{
+        padding: 3%;
+    
+        width: 40%;
+    
+        border-radius: 12px;
+    }
+
+    #imagen_encontrado{
+        position: absolute;
+        width: 60%;
+        height: 30%;
+        left: 20%;
+        top: 40%;
+        
+        background: none;
+    
+        box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+        border-radius: 24px;
+    }
+
+    #texto_devuelto{
+        position: absolute;
+        width: 80%;
+        height: 30%;
+        left: 10%;
+        top: 30%; 
+    
+        background: #F3F5FC;
+        border: none;
+    }
+    
+    footer{
+        text-align: center;
+        padding: 2%;
+    
+        position: absolute;
+        top: 90%;
+        left: 17%;
+    }
+} 
